@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ======== SEO Meta Tags ======== -->
+    <title>Good Morning Wishes | Create & Share Daily Greetings</title>
+    <meta name="description" content="Start the day with a smile! Create and send beautiful, animated Good Morning wishes with a motivational quote and your name. It's free and easy to share.">
+    <meta name="keywords" content="Good morning wishes, daily greetings, motivational quotes, good morning messages, personalized wishes, shareable greetings, morning quotes">
+    
+    <!-- Open Graph Tags for Social Media Sharing (Very Important) -->
+    <meta property="og:title" content="A Special Morning Wish For You!">
+    <meta property="og:description" content="Create and send beautiful, animated Good Morning wishes with a motivational quote.">
+    <meta property="og:image" content="https://i.imgur.com/uS5x285.jpeg"> <!-- A high-quality static image for the preview -->
+    <meta property="og:url" content="https://your-website-link.com/index.html"> <!-- !! IMPORTANT: Replace with your actual link !! -->
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="A Special Morning Wish For You!">
+    <meta name="twitter:description" content="Create and send beautiful, animated Good Morning wishes with a motivational quote.">
+    <meta name="twitter:image" content="https://i.imgur.com/uS5x285.jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-gradient-start: #89f7fe;
+            --bg-gradient-end: #66a6ff;
+            --container-bg: rgba(255, 255, 255, 0.2);
+            --primary-text: #0b3d91;
+            --secondary-text: #333;
+            --quote-text: #1d3557;
+            --button-bg: #ff6b6b;
+            --button-text: #ffffff;
+            --border-color: rgba(255, 255, 255, 0.5);
+        }
+        body {
+            margin: 0;
+            padding: 20px 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            box-sizing: border-box;
+        }
+        .main-content {
+            flex-grow: 1; display: flex; justify-content: center;
+            align-items: center; width: 100%;
+        }
+        .container {
+            background: var(--container-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 25px; border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            text-align: center; max-width: 400px;
+            width: 90%; border: 1px solid var(--border-color);
+            z-index: 10;
+        }
+        .morning-gif {
+            max-width: 70%; border-radius: 15px;
+            margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem; color: var(--primary-text);
+            margin: 0;
+        }
+        #from-text {
+            font-size: 1.1rem; font-weight: 600; color: var(--primary-text);
+            min-height: 24px; margin: 5px 0 15px 0;
+        }
+        .quote-container {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px; border-radius: 10px; margin: 20px 0;
+            font-style: italic; color: var(--quote-text);
+            min-height: 60px; display: flex; align-items: center; justify-content: center;
+        }
+        .wish-creator p { color: var(--secondary-text); margin-top: 20px; margin-bottom: 10px; }
+        #name-input {
+            width: calc(100% - 22px); padding: 12px 10px;
+            border-radius: 8px; border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem; text-align: center; margin-bottom: 20px;
+        }
+        .share-button {
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: var(--button-bg); color: var(--button-text);
+            padding: 12px 25px; border-radius: 25px; text-decoration: none;
+            font-weight: 600; font-size: 1.1rem;
+            transition: all 0.3s ease; border: none; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .share-button:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
+        .share-button:disabled { background-color: #aaa; cursor: not-allowed; box-shadow: none; }
+        .ad-container-bottom {
+            width: 100%; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            margin-top: 25px; padding-bottom: 10px; gap: 15px;
+        }
+        .particle {
+            position: absolute; background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%; animation: floatUp linear infinite;
+            bottom: -20vh; z-index: 1;
+        }
+        @keyframes floatUp {
+            to { transform: translateY(-120vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="container">
+            <img src="morning.gif" alt="Good Morning Animation" class="morning-gif">
+            <h1 id="greeting-title"></h1>
+            <p id="from-text"></p>
+            <div class="quote-container">
+                <p id="quote-of-the-day"></p>
+            </div>
+            <div class="wish-creator">
+                <p>Enter your name to share a wish:</p>
+                <input type="text" id="name-input" placeholder="Your Name">
+                <button id="share-btn" class="share-button" disabled>Share Wish ✨</button>
+            </div>
+        </div>
+    </div>
+    <div class="ad-container-bottom">
+        <div>
+            <script type="text/javascript">
+                atOptions = { 'key' : 'd40323b9791843f696600967f843aebb', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/d40323b9791843f696600967f843aebb/invoke.js"></script>
+        </div>
+        <div>
+            <script type="text/javascript">
+                atOptions = { 'key' : 'd40323b9791843f696600967f843aebb', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/d40323b9791843f696600967f843aebb/invoke.js"></script>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const greetingTitle = document.getElementById('greeting-title');
+            const quoteText = document.getElementById('quote-of-the-day');
+            const nameInput = document.getElementById('name-input');
+            const shareButton = document.getElementById('share-btn');
+            const fromText = document.getElementById('from-text');
+
+            // --- Feature 1: Dynamic Greeting based on time ---
+            const hours = new Date().getHours();
+            if (hours < 12) greetingTitle.textContent = "Good Morning!";
+            else if (hours < 18) greetingTitle.textContent = "Good Afternoon!";
+            else greetingTitle.textContent = "Good Evening!";
+
+            // --- Feature 2: Random Quote of the Day ---
+            const quotes = [
+                "The best way to get started is to quit talking and begin doing.",
+                "The secret of getting ahead is getting started.",
+                "With the new day comes new strength and new thoughts.",
+                "Every morning is a beautiful morning.",
+                "Your future is created by what you do today, not tomorrow.",
+                "Set a goal that makes you want to jump out of bed in the morning.",
+                "Rise up, start fresh, see the bright opportunity in each day."
+            ];
+            quoteText.textContent = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+            
+            // --- Core Logic: Handle URL parameters and Sharing ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const fromName = urlParams.get('from');
+            if (fromName) {
+                fromText.textContent = `A wish from ${decodeURIComponent(fromName.replace(/\+/g, ' '))}`;
+            }
+
+            nameInput.addEventListener('input', () => {
+                shareButton.disabled = !nameInput.value.trim();
+            });
+
+            shareButton.addEventListener('click', async () => {
+                const userName = nameInput.value.trim();
+                if (!userName) return;
+
+                const baseUrl = window.location.href.split('?')[0];
+                const personalizedUrl = `${baseUrl}?from=${encodeURIComponent(userName)}`;
+                
+                const shareData = {
+                    title: 'A Morning Wish For You!',
+                    text: `☀️ ${userName} sent you a beautiful morning greeting with a special quote! Check it out:`,
+                    url: personalizedUrl
+                };
+
+                if (navigator.share) {
+                    try { await navigator.share(shareData); } 
+                    catch (err) { console.error('Share failed:', err.message); }
+                } else {
+                    alert('Your browser does not support native sharing. Opening WhatsApp as a fallback.');
+                    const whatsappMessage = `${shareData.text}\n\n${shareData.url}`;
+                    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappMessage)}`;
+                    window.open(whatsappUrl, '_blank');
+                }
+            });
+
+            // --- Feature 3: Floating Particles Animation ---
+            const body = document.querySelector('body');
+            const particleCount = 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 15 + 5; // Size between 5px and 20px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // Duration 10s-20s
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                body.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>
